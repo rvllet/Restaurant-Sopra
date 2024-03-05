@@ -1,0 +1,41 @@
+<div class="detailDish">
+
+  <div class="menuFilters">
+
+    <form class="menuform">
+      <mat-form-field>
+        <mat-label for="filterDesc">Busca:</mat-label>
+          <input matInput type="text"
+                 [(ngModel)]="filterSearch"
+                 class="form-control"
+                 name="filterDesc"
+                 id="filterDesc"
+                 />
+      </mat-form-field>
+    </form>
+
+      <button mat-raised-button (click)="sortByPrice()">Filtrar per preu</button>
+
+      <a
+      mat-raised-button
+        routerLink="/dishes/add"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Afegir Plat</a>
+  </div>
+
+
+
+  <div class="dish">
+    @if(listMenu){ @if(listMenu.dishes && listMenu.dishes.length) {
+      @for(dish of listMenu.dishes| dishFilter:filterSearch; track dish.id){
+
+    <app-dish [dish]="dish" (delete)="deleteDish(dish.id!)"></app-dish>
+
+    } } @else {
+    <div>No hi han plats</div>
+    } }@else{
+    <div>No hi han plats</div>
+    }
+  </div>
+</div>

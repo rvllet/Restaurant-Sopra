@@ -1,0 +1,68 @@
+<div class="detailDish">
+  @if(!dish || !comments){
+
+  }@else {
+
+    <div class="image">
+      <img src="{{dish.image}}" alt="{{ dish.name }}">
+
+    </div>
+    <div class="info">
+      <p class="name">{{ dish.name | titlecase }}</p>
+      <p class="description">{{ dish.description }}</p>
+      <p class="ingredients">{{dish.ingredients}}</p>
+      <p class="price">{{dish.price | currency : 'EUR' : 'symbol'}}</p>
+      <button mat-raised-button>Afegeix</button>
+    </div>
+
+
+
+     <div class="comments">
+
+        @if(comments){
+          <h2>Comentaris</h2>
+
+
+            @for (comment of comments; track $index) {
+              <div class="comment">
+              <p>{{comment.comment}}</p>
+              <div class="star-container">
+                Puntuació:
+                @for(star of [1,2,3,4,5]; track $index) {
+                  <i [ngClass]="{'bi bi-star-fill': star <= comment.rating, 'bi bi-star': star > comment.rating}"></i>
+                }
+              </div>
+            </div>
+            }
+
+        }
+
+    </div>
+
+ @if(usersService.getCurrentSession() != null){
+    <div class="newComment">
+      <form (ngSubmit)="newComment()" class="mat-form">
+
+        <mat-form-field>
+          <mat-label for="comment" >Deixa un comentari: </mat-label>
+          <textarea matInput name="comment" rows="2" [(ngModel)]="inputComment.comment" required></textarea>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-label for="rating" >Puntuació:</mat-label>
+          <mat-select appearance="fill" name="rating" id="rating"  [(ngModel)]="inputComment.rating" required>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+        <button  mat-raised-button type="submit" >Publica</button>
+      </form>
+
+    </div>
+    }
+  }
+
+</div>

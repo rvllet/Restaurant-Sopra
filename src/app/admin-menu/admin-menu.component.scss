@@ -1,0 +1,37 @@
+$primary-color: #144248;
+$secundary-color: #f4e9d8;
+$accent-color: #e18371;
+
+.detailDish{
+  background-color: $primary-color;
+
+  padding-bottom: 100px;
+
+  .menuFilters{
+
+    height: 120px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba($color: $accent-color, $alpha: 0.6);
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    a{
+      margin-left: 16px;
+    }
+
+    button:hover, a:hover{
+      background-color: $primary-color;
+      color: $secundary-color;
+    }
+  }
+
+  .dish{
+    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  }
+
+}

@@ -1,0 +1,50 @@
+<div class="menuFilters">
+
+  <form class="menuform">
+    <mat-form-field>
+      <mat-label for="filterDesc">Busca:</mat-label>
+        <input matInput type="text"
+               [(ngModel)]="filterSearch"
+               class="form-control"
+               name="filterDesc"
+               id="filterDesc"
+               />
+    </mat-form-field>
+  </form>
+
+    <button mat-raised-button (click)="sortByPrice()">Filtrar per preu</button>
+
+</div>
+
+  <div class="menuCards">
+
+    @if(listMenu){
+      @if(listMenu.dishes && listMenu.dishes.length ) {
+          @for(dish of listMenu.dishes | dishFilter:filterSearch; track dish.id){
+
+            <mat-card class="dishCard">
+
+              <img mat-card-image src="{{dish.image}}" alt="foto menu normal">
+              <a [routerLink]="['/dishes',dish.id]"><mat-card-title>{{ dish.name | titlecase }}</mat-card-title></a>
+              <mat-card-content><p>{{ dish.price | currency : 'EUR' : 'symbol'}}</p></mat-card-content>
+              <mat-card-actions align="end">
+                <button mat-raised-button (click)="addToCart(dish)">Afegeix</button>
+              </mat-card-actions>
+            </mat-card>
+
+        }
+       }
+       @else {
+        <div class="alert alert-info">
+          No hi han plats
+        </div>
+        }
+
+    }@else{
+      <div class="alert alert-info">
+        No hi han plats
+      </div>
+    }
+
+  </div>
+

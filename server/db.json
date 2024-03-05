@@ -1,0 +1,198 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "chef",
+      "password": "chef",
+      "email": "chef@test.com",
+      "role": "chef"
+    },
+    {
+      "id": "2",
+      "username": "user1",
+      "password": "1234",
+      "email": "user1@test.com",
+      "role": "user"
+    }
+  ],
+  "dishes": [
+    {
+      "id": "1",
+      "name": "Flor de remolatxa",
+      "description": "Flor de remolatxa amb hummus",
+      "ingredients": "remolatxa, oli d'oliva verge extra, sal, sense gluten, vegà, vegetarià, sense lactosa",
+      "price": 18,
+      "category": "Entrante",
+      "image": "/assets/img/menu/flor.png",
+      "enabled": true
+    },
+    {
+      "id": "2",
+      "name": "Gaspatxo d'alvocat ",
+      "description": "Gaspatxo d'alvocat amb matisos de tomaca adobada",
+      "ingredients": "tomàquet, oli d'oliva verge extra, sal, sense gluten, vegà, vegetarià, sense lactosa",
+      "price": 22,
+      "category": "Entrante",
+      "image": "/assets/img/menu/gas.png",
+      "enabled": true
+    },
+    {
+      "id": "3",
+      "name": "Xixas hori",
+      "description": "Xixa horis amb tofunesa",
+      "ingredients": "pastanaga, carbassó, ceba, porro, brou de verdures, sal, pebre",
+      "price": 22,
+      "category": "Entrante",
+      "image": "/assets/img/menu/xixa.png",
+      "enabled": true
+    },
+    {
+      "id": "4",
+      "name": "Carpaccio de bolets",
+      "description": "Carpaccio temperat de bolets amb paté d'anacards",
+      "ingredients": "bolets, oli d'oliva verge extra, sal, paté d'anacards",
+      "price": 22,
+      "category": "Entrante",
+      "image": "/assets/img/menu/carp.png",
+      "enabled": true
+    },
+    {
+      "id": "5",
+      "name": "Albergínia toscana",
+      "description": "Làmines d'albergínia en tempura de cigrons amb un farciment de pebrot vermell rostit, pesto, formatge vegà, salsa de tomàquet natural i ametlles torrades",
+      "ingredients": "albergínia, cigrons, pebrot vermell, pesto, formatge vegà, salsa de tomàquet natural, ametlles",
+      "price": 19,
+      "category": "Plato principal",
+      "image": "/assets/img/menu/alba.png",
+      "enabled": true
+    },
+    {
+      "id": "6",
+      "name": "Arròs",
+      "description": "Arròs al Ras el Hanout cremós amb coco i pinya",
+      "ingredients": "arròs, llet de coco, pinya",
+      "price": 21,
+      "category": "Plato principal",
+      "image": "/assets/img/menu/arros.png",
+      "enabled": true
+    },
+    {
+      "id": "7",
+      "name": "Canneloni",
+      "description": "Canelons de espinac, formatge ricotta i parmesà amb una salsa de tomàquet cremós, mozzarella a la graella i mesclun",
+      "ingredients": "espinacs, formatge ricotta vegà, formatge parmesà vegà, tomàquet, mozzarella vegàna, mesclun",
+      "price": 24,
+      "category": "Plato principal",
+      "image": "/assets/img/menu/cane.png",
+      "enabled": true
+    },
+    {
+      "id": "8",
+      "name": "Wok teriyaki",
+      "description": "Saltat de verdures en juliana amb daditos de tofu i fideus d’arrós",
+      "ingredients": "verdures, tofu, fideus d’arrós, salsa teriyaki",
+      "price": 18,
+      "category": "Plato principal",
+      "image": "/assets/img/menu/wok.png",
+      "enabled": true
+    },
+    {
+      "id": "9",
+      "name": "Casarecce ai carciofi",
+      "description": "Carxofes a la graella, carabassons i xampinyons saltats, salsa de tomàca casolana, parmesà i alfàbrega",
+      "ingredients": "carxofes, carabassons, xampinyons, salsa de tomàquet casolana, parmesà vegà, alfàbrega",
+      "price": 20,
+      "category": "Plato principal",
+      "image": "/assets/img/menu/cas.png",
+      "enabled": true
+    },
+    {
+      "id": "10",
+      "name": "Papillot de bolets",
+      "description": "Bolets frescos variats fets al forn en papillot amb estragó i Pernod",
+      "ingredients": "bolets, estragó, pernod",
+      "price": 23,
+      "category": "Plato principal",
+      "image": "/assets/img/menu/pap.png",
+      "enabled": true
+    },
+    {
+      "id": "11",
+      "name": "Tiramisú",
+      "description": "Postre de Crema de Anacardos i cafè",
+      "ingredients": "cafè, crema d'anacardos",
+      "price": 5,
+      "category": "Postre",
+      "enabled": true,
+      "image": "/assets/img/menu/tiramisu.png"
+    },
+    {
+      "id": "12",
+      "name": "Pastís de Xocolata",
+      "description": "Deliciós pastís de xocolata sense productes animals",
+      "ingredients": "Xocolata, farina, sucre, oli vegetal",
+      "price": 6,
+      "category": "Postre",
+      "enabled": true,
+      "image": "/assets/img/menu/xoco.png"
+    },
+    {
+      "id": "13",
+      "name": "Gelat de Maduixa",
+      "description": "Gelat refrescant i deliciós amb autèntic sabor a maduixa",
+      "ingredients": "Maduixes, llet de coco, sucre",
+      "price": 4.5,
+      "category": "Postre",
+      "enabled": true,
+      "image": "/assets/img/menu/gm.png"
+    },
+    {
+      "id": "14",
+      "name": "Crema Catalana",
+      "description": "Una versió vegana del clàssic postre català, lleuger i ple de sabor",
+      "ingredients": "Llet d'arròs, sucre, canyella",
+      "price": 7.5,
+      "category": "Postre",
+      "enabled": true,
+      "image": "/assets/img/menu/cc.png"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "user_id": "2",
+      "dish_id": "1",
+      "comment": "Molt bo!",
+      "rating": 5,
+      "created_at": "2024-01-10T12:00:00"
+    },
+    {
+      "id": "395083051",
+      "user_id": "1",
+      "dish_id": "2",
+      "comment": "Molt bo!",
+      "rating": "5"
+    },
+    {
+      "id": "236452106",
+      "user_id": "1",
+      "dish_id": "9",
+      "comment": "Espectacular!",
+      "rating": "5"
+    },
+    {
+      "id": "617581386",
+      "user_id": "1",
+      "dish_id": "7",
+      "comment": "Hola",
+      "rating": "5"
+    },
+    {
+      "id": "755868404",
+      "user_id": "1",
+      "dish_id": "7",
+      "comment": "",
+      "rating": 0
+    }
+  ]
+}

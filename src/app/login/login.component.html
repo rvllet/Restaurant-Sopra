@@ -1,0 +1,23 @@
+<div class="login">
+  <div class="loginForm">
+    <form (ngSubmit)="checkUser()">
+      <mat-form-field>
+        <mat-label for="username">Usuari: </mat-label>
+        <input matInput type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp" [(ngModel)]="user.username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="password">Contrasenya: </mat-label>
+        <input matInput type="password" class="form-control" name="password" id="password" aria-describedby="passwordHelp" [(ngModel)]="user.password" required>
+      </mat-form-field><br>
+      <button mat-raised-button>Entra</button>
+
+    </form>
+  </div>
+  <div class="loginImg">
+    <img src="/assets/img/place/cafeteria.png" alt="Nuestro restaurante">
+  </div>
+  <div class="welcomed">Benvinguda</div>
+  <div class="logo">
+    <img src="/assets/img/logo/logo2.png" alt="Nectar">
+  </div>
+</div>

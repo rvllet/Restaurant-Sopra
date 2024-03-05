@@ -1,0 +1,15 @@
+<div class="menuCards">
+  <mat-card class="dishCard">
+    <img mat-card-image src="{{ dish.image }}" alt="{{ dish.name }}" />
+    <mat-card-title>{{ dish.name | titlecase }}</mat-card-title>
+    <mat-card-content><p>{{ dish.price }}€</p></mat-card-content>
+    <button mat-raised-button type="submit" (click)="deleteDish()">
+      Borra
+    </button>
+    <button mat-raised-button type="submit" [routerLink]="['/dishes/edit',dish.id]">
+      Edita
+    </button>
+  </mat-card>
+
+
+</div>

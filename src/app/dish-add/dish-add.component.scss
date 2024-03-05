@@ -1,0 +1,27 @@
+/* COLORS */
+$primary-color: #144248;
+$secundary-color: #f4e9d8;
+$accent-color: #e18371;
+
+.addDish{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-template-rows: repeat(2, 1fr);
+  text-align: center;
+
+  form{
+    grid-column: 2;
+    grid-row:1;
+    background-color: rgba($color: $accent-color, $alpha: 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    button{
+      margin-top: 10px;
+    }
+    button:hover{
+      background-color: $primary-color;
+      color:$secundary-color;
+    }
+  }
+}

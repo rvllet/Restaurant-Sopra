@@ -1,0 +1,55 @@
+
+<mat-toolbar class="max-w-7xl mx-auto justify-between">
+  <span routerLink="welcome"><img class="logo" src="/assets/img/logo/logo2.png" alt="nectar"></span>
+  <div class="links">
+  <a routerLink="dishes" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}"><span class=" material-icon-styled material-icons">restaurant</span></a>
+  @if(usersService.getCurrentSession() != null && usersService.userIsAChef(usersService.getCurrentSession()) == true){
+    <a routerLink="/dishes/edit" routerLinkActive="active" ariaCurrentWhenActive="page"><span class=" material-icon-styled material-icons">
+      settings
+      </span></a>
+  }
+    @if(usersService.getCurrentSession() == null){
+      <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page"><span class=" material-icon-styled material-icons">person</span></a>
+    }@else {
+      <button mat-icon-button [matMenuTriggerFor]="cartDetail">
+        <mat-icon
+        matBadge={{shopService.totalItems()}}
+        matBadgeColor="warn"
+        aria-hidden="false"
+        >shopping_cart</mat-icon>
+      </button>
+      <mat-menu #cartDetail="matMenu">
+        <div class="p-3 divide-y divide-solid">
+          <div class="pb-3 flex justify-between">
+            <span class="mr-16">{{shopService.totalItems()}} items</span>
+            <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Llista</a>
+          </div>
+          @for(dish of shopService.shoppingCart; track dish.id){
+
+            <div class="py-3">
+              <div class="flex justify-between mb-2">
+                {{dish.name}}
+                <span>{{dish.price | currency : 'EUR' }}</span>
+              </div>
+            </div>
+          }
+          <div>
+            Total:
+            <span>{{'22' | currency : 'EUR' }}</span>
+          </div>
+        </div>
+      </mat-menu>
+      <a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page" ><span class=" material-icon-styled material-icons">account_circle</span></a>
+      <a (click)="usersService.removeSession()" ><span class=" material-icon-styled material-icons">logout</span></a>
+    }
+  </div>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="footer">
+  Nèctar<br>
+  Desenvolupat per Judit Iñesta Lorente · 2024
+</div>
