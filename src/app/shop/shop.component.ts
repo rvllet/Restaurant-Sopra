@@ -26,4 +26,15 @@ export class ShopComponent implements OnInit{
     this.shoppingCart = this.shopService.getCart();
     console.log(this.shoppingCart)
   }
+
+  totalPrice(): number{
+    let total = 0;
+    if(!this.shoppingCart){
+      return total;
+    }
+    this.shoppingCart.forEach(dish => {
+      total += dish.price;
+    });
+    return total;
+  }
 }

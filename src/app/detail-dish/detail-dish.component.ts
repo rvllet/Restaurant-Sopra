@@ -13,6 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 
 @Component({
@@ -43,7 +44,8 @@ export class DetailDishComponent implements OnInit{
     private service: DishService,
     private commentservice: CommentsService,
     private userservice: UserService,
-    protected usersService: UserService
+    protected usersService: UserService,
+    private shopService: ShoppingCartService
 
   ) { }
 
@@ -57,6 +59,11 @@ export class DetailDishComponent implements OnInit{
 
   ngOnDestroy(): void { // unsuscribes
     this.suscription?.unsubscribe();
+  }
+
+  addToCart(dish: Dish): void{
+    this.shopService.addDish(dish);
+    console.log('added');
   }
 
   goBack() { // navigates the routes

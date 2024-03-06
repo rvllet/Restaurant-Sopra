@@ -12,7 +12,7 @@
       <p class="description">{{ dish.description }}</p>
       <p class="ingredients">{{dish.ingredients}}</p>
       <p class="price">{{dish.price | currency : 'EUR' : 'symbol'}}</p>
-      <button mat-raised-button>Afegeix</button>
+      <button mat-raised-button (click)="addToCart(dish)">Afegeix</button>
     </div>
 
 
