@@ -21,8 +21,8 @@
       <mat-menu #cartDetail="matMenu">
         <div class="p-3 divide-y divide-solid">
           <div class="pb-3 flex justify-between">
-            <span class="mr-16">{{shopService.totalItems()}} items</span>
-            <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Llista</a>
+            <span class="mr-16">{{shopService.totalItems()}} productes</span>
+            <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Vore la comanda</a>
           </div>
           @for(dish of shopService.shoppingCart; track dish.id){
 
@@ -35,7 +35,7 @@
           }
           <div>
             Total:
-            <span>{{'22' | currency : 'EUR' }}</span>
+            <span>{{shopService.totalPrice() | currency : 'EUR' }}</span>
           </div>
         </div>
       </mat-menu>
