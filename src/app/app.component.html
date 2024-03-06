@@ -11,6 +11,7 @@
     @if(usersService.getCurrentSession() == null){
       <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page"><span class=" material-icon-styled material-icons">person</span></a>
     }@else {
+
       <button mat-icon-button [matMenuTriggerFor]="cartDetail">
         <mat-icon
         matBadge={{shopService.totalItems()}}
@@ -18,12 +19,14 @@
         aria-hidden="false"
         >shopping_cart</mat-icon>
       </button>
+
       <mat-menu #cartDetail="matMenu">
         <div class="p-3 divide-y divide-solid">
           <div class="pb-3 flex justify-between">
             <span class="mr-16">{{shopService.totalItems()}} productes</span>
             <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Vore la comanda</a>
           </div>
+          <hr>
           @for(dish of shopService.shoppingCart; track dish.id){
 
             <div class="py-3">
@@ -31,14 +34,18 @@
                 {{dish.name}}
                 <span>{{dish.price | currency : 'EUR' }}</span>
               </div>
+              <hr>
             </div>
           }
+
           <div>
             Total:
             <span>{{shopService.totalPrice() | currency : 'EUR' }}</span>
           </div>
         </div>
       </mat-menu>
+
+
       <a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page" ><span class=" material-icon-styled material-icons">account_circle</span></a>
       <a (click)="usersService.removeSession()" ><span class=" material-icon-styled material-icons">logout</span></a>
     }

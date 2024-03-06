@@ -80,6 +80,10 @@ mat-toolbar{
     color: $accent-color;
     font-size: 38px;
   }
+
+  mat-menu{
+    margin: 10px;
+  }
 }
 
 .container{
