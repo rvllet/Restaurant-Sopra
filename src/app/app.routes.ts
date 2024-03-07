@@ -12,6 +12,7 @@ import { isAdminGuard } from './guards/is-admin.guard';
 import { isLoguedGuard } from './guards/is-logued.guard';
 import { ShopComponent } from './shop/shop.component';
 
+
 export const routes: Routes = [
 
   { path: 'dishes/edit/:id', component: DishEditComponent, canActivate: [isAdminGuard]},
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [isLoguedGuard] },
   { path: 'shop', component: ShopComponent, canActivate: [isLoguedGuard] },
   { path: 'login', component: LoginComponent },
+
 
   { path: 'welcome', component: WelcomeComponent },
 
