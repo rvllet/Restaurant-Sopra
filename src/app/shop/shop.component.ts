@@ -6,14 +6,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
-import {MatDialog} from '@angular/material/dialog';
-import {
-  MatSnackBar,
-  MatSnackBarAction,
-  MatSnackBarActions,
-  MatSnackBarLabel,
-  MatSnackBarRef,
-} from '@angular/material/snack-bar';
+
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { shopDish } from '../interface/shopDish';
 
@@ -44,10 +38,14 @@ export class ShopComponent implements OnInit{
   }
 
   removeDish(dish: Dish): void{
-    // this.shoppingCart.find(dish)
-    // const position = this.shoppingCart.findIndex(dish);
-    // this.shopService.removeDish(position);
-    // this.shoppingCart = this.shopService.getCart();
+    let position = 0;
+    this.shoppingCart.forEach(item => {
+      if(item.dish === dish){
+        position = this.shoppingCart.indexOf(item)
+        this.shopService.removeDish(position);
+      }
+    });
+    this.shoppingCart = this.shopService.getCart();
   }
   removeCart(){
     //mostrará un mensaje tipo "ha ocurrido un error, inténtalo de nuevo mas tarde"

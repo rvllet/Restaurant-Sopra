@@ -21,7 +21,7 @@
   <ng-container matColumnDef="icons">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let dish">
-      <button mat-icon-button (click)="removeDish(dish)">
+      <button mat-icon-button (click)="removeDish(dish.dish)">
         <mat-icon>delete</mat-icon>
       </button>
     </td> 
