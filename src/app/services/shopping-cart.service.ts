@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../interface/dish';
+import { shopDish } from '../interface/shopDish';
 
 @Injectable({
   providedIn: 'root'
@@ -7,18 +8,30 @@ import { Dish } from '../interface/dish';
 
 export class ShoppingCartService {
 
-  shoppingCart: Dish[] = [];
+  shoppingCart: shopDish[] = [];
 
   constructor() { }
 
   addDish(dish: Dish): void{
-    this.shoppingCart.push(dish);
+    let exists: boolean = false;
+    
+    this.shoppingCart.forEach(addedDish => {
+      if(addedDish.dish.id === dish.id){
+        exists = true;
+        ++addedDish.quantity;
+      }
+    });
+    if(!exists){
+      const addDish = new shopDish(dish, 1);
+      this.shoppingCart.push(addDish);
+    }
     this.saveLocalStorage();
+
   }
 
   getCart(){
     let storedCart = localStorage.getItem('shoppingCart');
-    if(storedCart === null){
+    if(!storedCart){
       this.shoppingCart = [];
     }else{
       this.shoppingCart = JSON.parse(storedCart);
@@ -27,12 +40,12 @@ export class ShoppingCartService {
   }
   
 
-  removeDish(dish: Dish): void{
-    if(!this.shoppingCart?.includes(dish)){
-      return;
-    }
-    const position = this.shoppingCart.indexOf(dish);
-    this.shoppingCart.splice(position, 1);
+  removeDish(position: number): void{ 
+    if(this.shoppingCart[position].quantity > 1){
+      --this.shoppingCart[position].quantity;
+    }else if (this.shoppingCart[position].quantity = 1) {
+      this.shoppingCart.splice(position, 1);
+    } 
     this.saveLocalStorage();
   }
 
@@ -50,11 +63,8 @@ export class ShoppingCartService {
   
   totalPrice(): number{
     let total = 0;
-    if(!this.shoppingCart){
-      return total;
-    }
-    this.shoppingCart.forEach(dish => {
-      total += dish.price;
+    this.shoppingCart.forEach(existingDish => {
+      total += existingDish.dish.price*existingDish.quantity
     });
     return total;
   }

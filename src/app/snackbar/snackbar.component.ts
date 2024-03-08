@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import {
-  MatSnackBar,
   MatSnackBarAction,
   MatSnackBarActions,
   MatSnackBarLabel,

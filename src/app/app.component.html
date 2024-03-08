@@ -27,12 +27,13 @@
             <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Vore la comanda</a>
           </div>
           <hr>
-          @for(dish of shopService.shoppingCart; track dish.id){
+          @for(dish of shopService.shoppingCart; track dish.dish.id){
 
             <div class="py-3">
               <div class="flex justify-between mb-2">
-                {{dish.name}}
-                <span>{{dish.price | currency : 'EUR' }}</span>
+                {{dish.dish.name}}
+                <span>x{{dish.quantity}} </span>
+                <span>{{dish.dish.price | currency : 'EUR' }}</span>
               </div>
               <hr>
             </div>
