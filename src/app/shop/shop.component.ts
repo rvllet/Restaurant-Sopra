@@ -8,7 +8,6 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { shopDish } from '../interface/shopDish';
 
 
@@ -48,12 +47,13 @@ export class ShopComponent implements OnInit{
     this.shoppingCart = this.shopService.getCart();
   }
   removeCart(){
-    //mostrará un mensaje tipo "ha ocurrido un error, inténtalo de nuevo mas tarde"
+    this._snackBar.open('Error al realitzar la compra.', 'D\'acord');
   }
 
   shopCart(){
     this.shopService.removeCart();
     this.shoppingCart = this.shopService.getCart();
+    this._snackBar.open('Compra realitzada amb éxit', 'D\'acord');
   }
 
   totalPrice(): number{
@@ -61,10 +61,7 @@ export class ShopComponent implements OnInit{
   }
 
   openSnackBar() {
-    this._snackBar.openFromComponent(SnackbarComponent, {
-      duration: this.durationInSeconds * 1000,
-    });
+    this._snackBar.open('Compra realitzada amb éxit');
   }
-  
 
 }
