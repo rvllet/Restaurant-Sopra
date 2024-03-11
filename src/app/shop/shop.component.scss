@@ -1,0 +1,33 @@
+/* COLORS */
+$primary-color: #144248;
+$secundary-color: #f4e9d8;
+$accent-color: #e18371;
+
+.shopList{
+    padding-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+
+    table{
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: $secundary-color;
+            
+    }
+}
+
+.shopButtons{
+    height: 300px;
+    text-align: center;
+
+    button{
+        margin-top: 30px;
+        margin-left: 10px;
+        padding: 20px;
+    }
+
+    button:hover{
+        background-color: $accent-color;
+        color:$secundary-color;
+    }
+}

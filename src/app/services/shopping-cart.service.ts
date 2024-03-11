@@ -10,8 +10,6 @@ export class ShoppingCartService {
 
   shoppingCart: shopDish[] = [];
 
-  constructor() { }
-
   addDish(dish: Dish): void{
     let exists: boolean = false;
     

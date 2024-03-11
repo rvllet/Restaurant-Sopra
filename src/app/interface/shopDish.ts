@@ -1,6 +1,6 @@
 import { Dish } from "./dish";
 
-export class shopDish {
+export class shopDish{
 
     dish: Dish;
     quantity: number;
