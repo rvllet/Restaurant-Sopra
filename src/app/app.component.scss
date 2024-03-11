@@ -81,11 +81,20 @@ mat-toolbar{
     font-size: 38px;
   }
 
-  mat-menu{
-    margin: 10px;
+}
+.menuInfo{
+  padding: 12px;
+  .menuActions{
+    a{
+      margin-left: 10px;
+      color: $accent-color;
+    }
+    a:hover{
+      color: $primary-color;
+    }
+
   }
 }
-
 .container{
   background-color: $primary-color;
   color:$secundary-color;

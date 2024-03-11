@@ -21,9 +21,9 @@
       </button>
 
       <mat-menu #cartDetail="matMenu">
-        <div class="p-3 divide-y divide-solid">
-          <div class="pb-3 flex justify-between">
-            <span class="mr-16">{{shopService.totalItems()}} productes</span>
+        <div class="menuInfo">
+          <div class="menuActions">
+            <span class="">{{shopService.totalItems()}} productes</span>
             <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Vore la comanda</a>
           </div>
           <hr>
