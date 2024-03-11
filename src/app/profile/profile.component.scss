@@ -16,10 +16,11 @@ $accent-color: #e18371;
     grid-row: 2 / 4;
     background-color: rgba($color: $accent-color, $alpha: 0.7);
     border-radius: 8px;
-    padding: 100px;
+    padding: 40px;
+    
 
     h3{
-      font-size: 40px;
+      font-size: 30px;
       font-family: Neutra;
       font-weight: 800;
       line-height: normal;
@@ -36,7 +37,8 @@ $accent-color: #e18371;
     text-align: center;
     font-family: Rokkitt;
     font-weight: bold;
-    font-size: 160px;
+    font-size: 100px;
+    line-height:normal;
 }
 
   .logo{
@@ -60,4 +62,31 @@ $accent-color: #e18371;
       width: auto;
     }
   }
+}
+@media only screen and (max-width: 600px) {
+  .profileInfo{
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+    background-color: rgba($color: $accent-color, $alpha: 0.7);
+    border-radius: 8px;
+    padding: 100px;
+
+    h3{
+      font-size: 20px;
+      font-family: Neutra;
+      font-weight: 800;
+      line-height: normal;
+      
+    }
+
+  }
+
+.profileTitle{
+    text-align: center;
+    font-family: Rokkitt;
+    font-weight: bold;
+    font-size: 60px;
+    line-height:normal;
+}
+
 }
