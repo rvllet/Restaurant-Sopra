@@ -14,7 +14,7 @@
 
       <button mat-icon-button [matMenuTriggerFor]="cartDetail">
         <mat-icon
-        matBadge={{shopService.totalItems()}}
+        matBadge={{itemsTotals}}
         matBadgeColor="warn"
         aria-hidden="false"
         >shopping_cart</mat-icon>
@@ -23,7 +23,7 @@
       <mat-menu #cartDetail="matMenu">
         <div class="menuInfo">
           <div class="menuActions">
-            <span class="">{{shopService.totalItems()}} productes</span>
+            <span class="">{{itemsTotals}} productes</span>
             <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page">Vore la comanda</a>
           </div>
           <hr>

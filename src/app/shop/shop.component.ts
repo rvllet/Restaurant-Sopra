@@ -46,6 +46,7 @@ export class ShopComponent implements OnInit{
     });
     this.shoppingCart = this.shopService.getCart();
   }
+
   removeCart(){
     this._snackBar.open('Error al realitzar la compra.', 'D\'acord');
   }
@@ -60,8 +61,6 @@ export class ShopComponent implements OnInit{
     return this.shopService.totalPrice();
   }
 
-  openSnackBar() {
-    this._snackBar.open('Compra realitzada amb éxit');
-  }
+
 
 }

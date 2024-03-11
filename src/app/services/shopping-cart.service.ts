@@ -9,14 +9,15 @@ import { shopDish } from '../interface/shopDish';
 export class ShoppingCartService {
 
   shoppingCart: shopDish[] = [];
+  itemsTotals: number = 0;
 
-  addDish(dish: Dish): void{
+  addDish(dish: Dish): void{ //is in Shop funció que sols comprove si existeixs array.some()
     let exists: boolean = false;
     
     this.shoppingCart.forEach(addedDish => {
       if(addedDish.dish.id === dish.id){
         exists = true;
-        ++addedDish.quantity;
+        addedDish.quantity++;
       }
     });
     if(!exists){
@@ -31,17 +32,16 @@ export class ShoppingCartService {
     let storedCart = localStorage.getItem('shoppingCart');
     if(!storedCart){
       this.shoppingCart = [];
-    }else{
-      this.shoppingCart = JSON.parse(storedCart);
     }
+    this.shoppingCart = JSON.parse(storedCart!);
     return this.shoppingCart
   }
   
 
   removeDish(position: number): void{ 
     if(this.shoppingCart[position].quantity > 1){
-      --this.shoppingCart[position].quantity;
-    }else if (this.shoppingCart[position].quantity = 1) {
+      this.shoppingCart[position].quantity--;
+    }else{
       this.shoppingCart.splice(position, 1);
     } 
     this.saveLocalStorage();
@@ -49,22 +49,21 @@ export class ShoppingCartService {
 
   removeCart(): void{
     localStorage.removeItem('shoppingCart');
-    this.totalItems();
+    this.itemsTotals = this.totalItems();// asignar una variable al service
   }
   
+  //total items i total price estarien més correctes a la classe
   totalItems(): number{
+    console.log('vaa?')
     if(!this.shoppingCart?.length){
-      return 0
+      return this.itemsTotals
     }
-    return this.shoppingCart.length
+    return this.itemsTotals = this.shoppingCart.length;
   }
   
   totalPrice(): number{
-    let total = 0;
-    this.shoppingCart.forEach(existingDish => {
-      total += existingDish.dish.price*existingDish.quantity
-    });
-    return total;
+    const inicialValue = 0;
+    return this.shoppingCart.reduce((total, dishCurrent) => total + (dishCurrent.dish.price*dishCurrent.quantity), inicialValue)
   }
 
   private saveLocalStorage(){
