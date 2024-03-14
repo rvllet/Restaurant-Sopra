@@ -26,6 +26,8 @@ export class ShopComponent implements OnInit{
   
   durationInSeconds = 5;
 
+  totalPayment: number = 0;
+
   constructor(
     private shopService: ShoppingCartService,
     private _snackBar: MatSnackBar
@@ -37,17 +39,11 @@ export class ShopComponent implements OnInit{
   }
 
   removeDish(dish: Dish): void{
-    let position = 0;
-    this.shoppingCart.forEach(item => {
-      if(item.dish === dish){
-        position = this.shoppingCart.indexOf(item)
-        this.shopService.removeDish(position);
-      }
-    });
+    this.shopService.removeDish(dish); 
     this.shoppingCart = this.shopService.getCart();
   }
 
-  removeCart(){
+  errorCart(){
     this._snackBar.open('Error al realitzar la compra.', 'D\'acord');
   }
 
@@ -57,8 +53,8 @@ export class ShopComponent implements OnInit{
     this._snackBar.open('Compra realitzada amb éxit', 'D\'acord');
   }
 
-  totalPrice(): number{
-    return this.shopService.totalPrice();
+  totalPrice(): void{
+    this.totalPayment = this.shopService.totalPrice();
   }
 
 

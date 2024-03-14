@@ -1,23 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Dish, IDish, MenuList } from '../interface/dish';
+import { IDish, MenuList } from '../interface/dish';
 import { CommonModule } from '@angular/common';
 import { DishComponent } from '../dish/dish.component';
 import { DishService } from '../services/dish.service';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DishFilterPipe } from '../pipes/dish-filter.pipe';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @Component({
   selector: 'app-admin-menu',
   standalone: true,
-  imports: [CommonModule, DishComponent, RouterLink,  DishFilterPipe, FormsModule,MatCardModule,  MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [CommonModule, DishComponent, RouterLink, DishFilterPipe, FormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './admin-menu.component.html',
   styleUrl: './admin-menu.component.scss'
 })

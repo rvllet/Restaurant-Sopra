@@ -16,7 +16,7 @@
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef>Preu</th>
       <td mat-cell *matCellDef="let dish"> {{dish.dish.price | currency : 'EUR' }} </td> 
-      <tr mat-footer-cell *matFooterCellDef="let row"> {{totalPrice() | currency : 'EUR' }} </tr>
+      <tr mat-footer-cell *matFooterCellDef="let row"> {{this.totalPayment | currency : 'EUR' }} </tr>
     </ng-container>
   
     <ng-container matColumnDef="icons">
@@ -37,6 +37,6 @@
 
 </div>
 <div class="shopButtons">
-  <button mat-raised-button (click)="removeCart()">Elimina</button>
+  <button mat-raised-button (click)="errorCart()">Elimina</button>
   <button mat-raised-button (click)="shopCart()">Compra</button>
 </div>

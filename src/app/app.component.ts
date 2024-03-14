@@ -20,13 +20,13 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 export class AppComponent {
   title = 'angular-gestionmenus-judit';
 
-  itemsTotals = this.shopService.totalItems();
-
+  
   constructor(private service:DishService, protected usersService: UserService, protected shopService: ShoppingCartService){
 
   }
 
   ngOnInit(): void {
     this.service.getMenu();
+   
   }
 }

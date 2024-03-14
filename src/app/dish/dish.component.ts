@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Dish, IDish } from '../interface/dish';
+import { Dish } from '../interface/dish';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class DishComponent {
   @Input() dish!: Dish;
   @Output() delete = new EventEmitter<string>();
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
 
   }
 

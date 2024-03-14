@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../interface/user';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './login.component.scss'
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   suscription: Subscription | null = null;
 
@@ -37,9 +37,6 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
   ) { }
 
-  ngOnInit() {
-
-  }
 
   ngOnDestroy(): void { // unsuscribes from the server
     this.suscription?.unsubscribe();
@@ -48,7 +45,7 @@ export class LoginComponent implements OnInit {
   checkUser() { // checks if the ueser exist in the database
     this.suscription = this.userService.getUser(this.user.username).subscribe({
       next: response => {
-        if(this.user.username == response.username){
+        if (this.user.username == response.username) {
           this.user = response
           this.userService.storeSession(this.user);
           this.router.navigate(['welcome']);
