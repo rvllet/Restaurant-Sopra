@@ -27,11 +27,14 @@ fdescribe('ShopComponent', () => {
     removeCart: jasmine.createSpy(),
     totalPrice: jasmine.createSpy().and.returnValue(totalPriceMock)
   }
+  let matSnackbarMock = {
+    open: jasmine.createSpy()
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ShopComponent],
-      providers: [{ provide: ShoppingCartService, useValue: shopServiceMock }]
+      providers: [{ provide: ShoppingCartService, useValue: shopServiceMock }, { provide: MatSnackBar, useValue: matSnackbarMock }]
     })
       .compileComponents();
 
@@ -58,5 +61,15 @@ fdescribe('ShopComponent', () => {
 
   });
 
+  it('should call totalPrice', () => {
+    component.totalPrice();
+    expect(shopServiceMock.totalPrice).toHaveBeenCalled();
+    expect(component.totalPayment).toEqual(totalPriceMock);
+  });
+
+  it('should call open in errorCart', () => {
+    component.errorCart();
+    expect(matSnackbarMock.open).toHaveBeenCalled();
+  });
 
 });  
