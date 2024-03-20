@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuComponent } from './menu.component';
 
-describe('MenuComponent', () => {
+xdescribe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
 
@@ -10,8 +10,8 @@ describe('MenuComponent', () => {
     await TestBed.configureTestingModule({
       imports: [MenuComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

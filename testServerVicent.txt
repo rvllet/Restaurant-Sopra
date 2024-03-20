@@ -1,0 +1,81 @@
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { PlatoService } from './plato.service';
+import { Plato } from '../interfaces/plato';
+ 
+describe('PlatoService', () => {
+  let service: PlatoService;
+  let controller: HttpTestingController;
+ 
+  const dish: Plato = {
+    id: '2',
+    name: 'Paella Marinera',
+    description:
+      'Deliciosa paella marinera con arroz, mariscos y un toque de azafrán.',
+    ingredients:
+      'arroz, mariscos, azafrán, sal, pimiento, cebolla, tomate, caldo de pescado',
+    price: 15.99,
+    category: 'plato principal',
+    image: 'https://picsum.photos/200/300',
+    enabled: true,
+  };
+ 
+  const errorMessage = new Error(
+    `Error al eliminar Plato. Código de servidor: 500. Mensaje: Http failure response for dishes/2: 500 Delete have fail`
+  );
+ 
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+    });
+    service = TestBed.inject(PlatoService);
+    controller = TestBed.inject(HttpTestingController);
+  });
+ 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+ 
+  it('should get a dish with getPlato', (done: DoneFn) => {
+    const myMockedDishId = '2';
+    service.getPlato(myMockedDishId).subscribe((res) => {
+      expect(res).toBe(dish);
+      done();
+    });
+    const req = controller.expectOne('dishes/2');
+    expect(req.request.method).toBe('GET');
+    req.flush(dish);
+  });
+ 
+  it('should delete a dish with deletePlato', (done: DoneFn) => {
+    const myMockedDishId = '2';
+    service.deletePlato(myMockedDishId).subscribe((res) => {
+      expect(res).toBe(dish);
+      done();
+    });
+    const req = controller.expectOne('dishes/2');
+    expect(req.request.method).toBe('DELETE');
+    req.flush(dish);
+  });
+ 
+  it('should manage error delete a dish with deletePlato', (done: DoneFn) => {
+    const myMockedDishId = '2';
+    service.deletePlato(myMockedDishId).subscribe({
+      next: () => {
+        fail('Should have fail with 500 error');
+        done();
+      },
+      error: (error) => {
+        console.log('zxds', error);
+        expect(error).toEqual(errorMessage);
+        done();
+      },
+    });
+    const req = controller.expectOne('dishes/2');
+    expect(req.request.method).toBe('DELETE');
+    req.flush('Server error', { status: 500, statusText: 'Delete have fail' });
+  });
+});

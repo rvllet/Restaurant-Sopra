@@ -38,7 +38,7 @@ export class DishService {
       ));
   }
 
-  addDish(dishInput?: Dish): void {
+  addDish(dishInput: Dish): void {
 
     this.http.post<Dish>(this.dishesEndpoint, dishInput).pipe(
       catchError((resp: HttpErrorResponse) =>

@@ -1,0 +1,89 @@
+import { Injectable } from '@angular/core';
+import { Plato } from '../interfaces/plato';
+import { Observable, catchError, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+ 
+@Injectable({
+  providedIn: 'root',
+})
+export class PlatoService {
+  constructor(private http: HttpClient) {}
+ 
+  private platoEndpoint = 'dishes';
+ 
+  dish: Plato[] = [];
+ 
+  getPlatos(): Observable<Plato[]> {
+    return this.http
+      .get<Array<Plato>>(this.platoEndpoint)
+      .pipe(
+        catchError((resp: HttpErrorResponse) =>
+          throwError(
+            () =>
+              new Error(
+                `Error obteniendo Platos. Código de servidor: ${resp.status}. Mensaje: ${resp.message}`
+              )
+          )
+        )
+      );
+  }
+ 
+  getPlato(id: string): Observable<Plato> {
+    return this.http
+      .get<Plato>(`${this.platoEndpoint}/${id}`)
+      .pipe(
+        catchError((resp: HttpErrorResponse) =>
+          throwError(
+            () =>
+              new Error(
+                `Error obteniendo Platos. Código de servidor: ${resp.status}. Mensaje: ${resp.message}`
+              )
+          )
+        )
+      );
+  }
+ 
+  updatePlato(Plato: Plato): Observable<Plato> {
+    return this.http
+      .put<Plato>(`${this.platoEndpoint}/${Plato.id}`, Plato)
+      .pipe(
+        catchError((resp: HttpErrorResponse) =>
+          throwError(
+            () =>
+              new Error(
+                `Error obteniendo Platos. Código de servidor: ${resp.status}. Mensaje: ${resp.message}`
+              )
+          )
+        )
+      );
+  }
+ 
+  addPlato(Plato: Plato): Observable<Plato> {
+    return this.http
+      .post<Plato>(this.platoEndpoint, Plato)
+      .pipe(
+        catchError((resp: HttpErrorResponse) =>
+          throwError(
+            () =>
+              new Error(
+                `Error crear Plato. Código de servidor: ${resp.status}. Mensaje: ${resp.message}`
+              )
+          )
+        )
+      );
+  }
+ 
+  deletePlato(id: string): Observable<Plato> {
+    return this.http
+      .delete<Plato>(`${this.platoEndpoint}/${id}`)
+      .pipe(catchError(this.generateError(resp)));
+  }
+ 
+  private generateError(resp: HttpErrorResponse):  {
+    return throwError(() => {
+      new Error(
+        `Error al eliminar Plato. Código de servidor: ${resp.status}. Mensaje: ${resp.message}`
+      );
+    });
+  }
+}

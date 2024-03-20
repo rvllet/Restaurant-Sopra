@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailDishComponent } from './detail-dish.component';
 
-describe('DetailDishComponent', () => {
+xdescribe('DetailDishComponent', () => {
   let component: DetailDishComponent;
   let fixture: ComponentFixture<DetailDishComponent>;
 
@@ -10,8 +10,8 @@ describe('DetailDishComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DetailDishComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DetailDishComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

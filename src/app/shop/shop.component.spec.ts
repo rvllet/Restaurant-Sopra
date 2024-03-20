@@ -6,7 +6,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 import { shopDish } from '../interface/shopDish';
 import { Dish } from '../interface/dish';
 
-fdescribe('ShopComponent', () => {
+describe('ShopComponent', () => {
   const dishMock: Dish = {
     id: '',
     name: '',
@@ -24,6 +24,7 @@ fdescribe('ShopComponent', () => {
   let shopServiceMock = {
     getCart: jasmine.createSpy().and.returnValue(cartMock),
     removeDish: jasmine.createSpy(),
+    shopCart: jasmine.createSpy(),
     removeCart: jasmine.createSpy(),
     totalPrice: jasmine.createSpy().and.returnValue(totalPriceMock)
   }
@@ -58,6 +59,15 @@ fdescribe('ShopComponent', () => {
 
     expect(shopServiceMock.getCart).toHaveBeenCalled();
     expect(component.shoppingCart).toEqual(cartMock);
+
+  });
+
+  it('should call shopCart', () => {
+    component.shopCart();
+    expect(shopServiceMock.removeCart).toHaveBeenCalled();
+    expect(shopServiceMock.getCart).toHaveBeenCalled();
+    expect(component.shoppingCart).toEqual(cartMock);
+    expect(matSnackbarMock.open).toHaveBeenCalled();
 
   });
 
