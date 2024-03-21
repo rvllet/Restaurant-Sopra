@@ -3,8 +3,9 @@ import { TestBed } from '@angular/core/testing';
 import { CommentsService } from './comments.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Dish } from '../interface/dish';
+import { Comment } from '../interface/comment';
 
-describe('CommentsService', () => {
+fdescribe('CommentsService', () => {
   let service: CommentsService;
   let controller: HttpTestingController;
   const dishMock: Dish = {
@@ -16,16 +17,15 @@ describe('CommentsService', () => {
     category: '',
     image: ''
   }
-  const commentsListMock: ArrayLike<Comment> = [];
+  const commentsListMock: Comment[] = [];
   const commentMock: Comment = {
-    id: '1',
-    user_id: '2',
+    id: '2',
+    user_id: '3',
     dish_id: '1',
     comment: '',
-    rating: 5,
-    created_at: ""
+    rating: 0
+  }
 
-  };
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
@@ -38,17 +38,17 @@ describe('CommentsService', () => {
     expect(service).toBeTruthy();
   });
 
-  xit('should get a comment[] with getComments', (done: DoneFn) => {
+  it('should get a comment[] with getComments', (done: DoneFn) => {
     service.getComments(dishMock.id).subscribe((response) => {
-      expect(response).toBe(commentsListMock);
+      expect(response).toEqual(commentsListMock);
       done();
     });
     const req = controller.expectOne(`comments?dish_id=${dishMock.id}`);
     expect(req.request.method).toBe('GET');
-    req.flush(dishMock);
+    req.flush(commentsListMock);
   });
 
-  xit('should add a comment with addComment', (done: DoneFn) => {
+  it('should add a comment with addComment', (done: DoneFn) => {
     const getCommentsSpy = spyOn(service, 'getComments');
 
     service.addComment(commentMock);
