@@ -5,7 +5,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { Dish } from '../interface/dish';
 import { Comment } from '../interface/comment';
 
-fdescribe('CommentsService', () => {
+describe('CommentsService', () => {
   let service: CommentsService;
   let controller: HttpTestingController;
   const dishMock: Dish = {

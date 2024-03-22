@@ -23,7 +23,7 @@ export class DishComponent {
 
   }
 
-  deleteDish() { // deletes the dish
+  deleteDish(): void { // deletes the dish
     if (confirm('Segur que vols eliminar aquest plat?')) {
       this.delete.emit(this.dish.id);
     }

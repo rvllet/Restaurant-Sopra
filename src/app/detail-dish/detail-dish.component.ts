@@ -2,17 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DishComponent } from '../dish/dish.component';
 import { Dish } from '../interface/dish';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DishService } from '../services/dish.service';
 import { Subscription } from 'rxjs';
 import { CommentsService } from '../services/comments.service';
 import { Comment } from '../interface/comment';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 
@@ -24,22 +24,21 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   styleUrl: './detail-dish.component.scss'
 })
 
-export class DetailDishComponent implements OnInit{
+export class DetailDishComponent implements OnInit {
 
   suscription: Subscription | null = null;
   dish: Dish | null = null;
-  comments: Comment[] | null = null;
+  comments: Comment[] = [];
   inputComment: Comment = {
-      id: '',
-      user_id: '1',
-      dish_id: '',
-      comment: '',
-      rating: 0,
+    id: '',
+    user_id: '1',
+    dish_id: '',
+    comment: '',
+    rating: 0,
   }
 
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private service: DishService,
     private commentservice: CommentsService,
@@ -49,28 +48,22 @@ export class DetailDishComponent implements OnInit{
 
   ) { }
 
-  ngOnInit(){ // fetches the data from the this on inizialize
-
-    const id = this.route.snapshot.params['id'];
+  ngOnInit() { // fetches the data from the this on inizialize
+    const id = this.route.snapshot.params['id']; //mock de objecte de objecte de objecte
     this.getDish(id);
     this.getComments(id);
-
   }
 
   ngOnDestroy(): void { // unsuscribes
     this.suscription?.unsubscribe();
   }
 
-  addToCart(dish: Dish): void{
+  addToCart(dish: Dish): void {
     this.shopService.addDish(dish);
     console.log('added');
   }
 
-  goBack() { // navigates the routes
-    this.router.navigate(['dishes']);
-  }
-
-  newComment(){ // adds a new comment
+  newComment() { // adds a new comment
     const id = this.route.snapshot.params['id'];
     this.inputComment.user_id = this.userservice.getId();
     this.inputComment.dish_id = id;
@@ -80,9 +73,9 @@ export class DetailDishComponent implements OnInit{
 
   }
 
-  private getDish(id: string){ // gets the dish by id
+  private getDish(id: string) { // gets the dish by id
     this.suscription = this.service.getDish(id).subscribe({
-      next: response =>{
+      next: response => {
         this.dish = response
       },
       error: err => console.error(err),
@@ -91,9 +84,9 @@ export class DetailDishComponent implements OnInit{
   }
 
 
-  private getComments(id: string){
+  private getComments(id: string) {
     this.suscription = this.commentservice.getComments(id).subscribe({
-      next: response =>{
+      next: response => {
         this.comments = response
       },
       error: err => console.error(err),
@@ -102,7 +95,6 @@ export class DetailDishComponent implements OnInit{
   }
 
   private generateId(): string {
-
     const randomId = Math.floor(Math.random() * 999999999);
     return randomId.toString();
   }

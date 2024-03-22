@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router,) { }
 
-  getUser(username: string): Observable<User>{
+  getUser(username: string): Observable<User> {
 
     return this.http.get<User[]>(`${this.usersEndpoint}?username=${username}`).pipe(
       map(resp => resp[0]),
@@ -31,50 +31,50 @@ export class UserService {
       ));
   }
 
-  storeSession(user: User){
+  storeSession(user: User) {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
-  userIsAChef(user: User){
-    if (user.role == 'chef'){
+  userIsAChef(user: User) {
+    if (user.role == 'chef') {
       return true;
     }
     return false;
 
   }
 
-  getCurrentSession(){
+  getCurrentSession() {
     const userJson = localStorage.getItem('user')
-    if(userJson != null){
+    if (userJson != null) {
       return JSON.parse(userJson)
     }
     return null;
   }
 
-  getUsername(): string{
+  getUsername(): string {
     const user = this.getCurrentSession()
     return user.username;
   }
 
-  getEmail(): string{
+  getEmail(): string {
     const user = this.getCurrentSession()
     return user.email;
   }
 
-  getId(): string{
+  getId(): string {
     const user = this.getCurrentSession()
     return user.id;
   }
 
-  getRole(): string{
+  getRole(): string {
     const user = this.getCurrentSession()
     return user.role;
   }
 
-  removeSession(){
+  removeSession() {
 
-      localStorage.removeItem('user');
-      this.router.navigate(['/welcome']);
+    localStorage.removeItem('user');
+    this.router.navigate(['/welcome']);
 
   }
 
